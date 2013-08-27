@@ -3,7 +3,7 @@ var makeTree = function(value){
   newTree.value = value;
   newTree.children = [];
 
-  _.extend(newTree,treeMethods);
+  _.extend(newTree, treeMethods);
 
   return newTree;
 };
@@ -19,13 +19,13 @@ treeMethods.addChild = function(value){
 treeMethods.contains = function(value){
   if(this.value === value){
     return true;
-  }
-  if (this.children.length) {
-    for (var i = 0; i < this.children.length; i++) {
+  } 
+  if(this.children.length){
+    for(var i = 0; i < this.children.length; i++){
       if(this.children[i].contains(value)){
         return true;
       }
     }
   }
-  return false
+  return false;
 };

@@ -12,17 +12,17 @@ setPrototype.add = function(value){
 
 setPrototype.contains = function(value){
   for(var key in this._storage){
-    if(key === value){
+    if (key === value){
       return true;
-    };
-  };
+    }
+  }
   return false;
 };
 
 setPrototype.remove = function(value){
   for(var key in this._storage){
-    if(key === value){
-      delete this._storage[value];
-    };
-  };
+    if (key === value){
+      delete this._storage[key];
+    }
+  }
 };

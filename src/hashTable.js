@@ -15,39 +15,40 @@ var HashTable = function(){
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   console.log(i);
-  if(this._storage.get(i) === undefined){
-    var collisionArr = [];
-    var keyValPair = [];
-    keyValPair.push(k);
-    keyValPair.push(v);
-    collisionArr.push(keyValPair);
-    this._storage.set(i, collisionArr);
+  if(!this._storage.get(i)){
+    var collArr = [];
+    var keyValArr = [];
+    keyValArr.push(k);
+    keyValArr.push(v);
+    collArr.push(keyValArr);
+    this._storage.set(i, collArr);
   } else {
-    var collisionArr = this._storage.get(i);
-    var keyValPair =  [];
-    keyValPair.push(k);
-    keyValPair.push(v);
-    collisionArr.push(keyValPair);
-    this._storage.set(i, collisionArr);
+    var collArr = this._storage.get(i);
+    var keyValArr = [];
+    keyValArr.push(k);
+    keyValArr.push(v);
+    collArr.push(keyValArr);
+    this._storage.set(i, collArr);
   }
+  //this._storage.set(i, v);
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  var collisionArr = this._storage.get(i);
-  for (var i = 0; i < collisionArr.length; i++) {
-    if (collisionArr[i][0] === k) {
-      return collisionArr[i][1];
+  var collArr = this._storage.get(i);
+  for(var j = 0; j < collArr.length; j++){
+    if(collArr[j][0] === k){
+      return collArr[j][1];
     }
   }
 };
 
-HashTable.prototype.remove = function(k){
+HashTable.prototype.remove = function(){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  var collisionArr = this._storage.get(i);
-  for (var i = 0; i < collisionArr.length; i++) {
-    if (collisionArr[i][0] === k) {
-      collisionArr.splice(i, 1);
+  var collArr = this._storage.get(i);
+  for(var j = 0; j < collArr.length; j++){
+    if(collArr[j][0] === k){
+      collArr.splice(j, 1);
     }
   }
 };

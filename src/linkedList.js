@@ -6,9 +6,9 @@ var makeLinkedList = function(){
 
   list.addToTail = function(value){
     var newNode = makeNode(value);
-    if(list.head === null){
+    if(!list.head){
       list.head = newNode;
-      list.tail = list.head;
+      list.tail = newNode;
     } else {
       list.tail.next = newNode;
       list.tail = newNode;
@@ -17,25 +17,24 @@ var makeLinkedList = function(){
 
   list.removeHead = function(){
     if(list.head){
-      var currentHead = list.head;
-      list.head = currentHead.next;
+      currentHead = list.head;
+      list.head = list.head.next;
       return currentHead.value;
     }
   };
 
   list.contains = function(value){
-    var currentNode = list.head;
-    if (currentNode.value === value) {
-      return true;
-    }
-    while (currentNode.next) {
-      if (currentNode.value === value) {
+    var currentHead = list.head;
+    while(currentHead){
+      if(currentHead.value === value){
         return true;
+      } else {
+        currentHead = currentHead.next;
       }
-      currentNode = currentNode.next;
     }
     return false;
   };
+
   return list;
 };
 
